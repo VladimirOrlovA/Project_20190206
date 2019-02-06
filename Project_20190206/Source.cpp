@@ -1,4 +1,7 @@
 #include<iostream>
+#include<cstdlib>	// для функции srand
+#include<ctime>		// для функции time
+#include<iomanip>	// для fixed setprecision
 
 using namespace std;
 
@@ -122,7 +125,7 @@ int main()
 	double x;
 	int n;
 	cin >> x >> n;
-	cout << okrugleniye(x, n) << endl;
+	cout << fixed << setprecision(n) << okrugleniye(x, n) << endl;
 
 	system("pause");
 	return 0;
@@ -131,6 +134,7 @@ int main()
 
 // 19.	*Напишите функцию, которая определяет количество нулевых элементов передаваемого массива. Реализовать перегрузки для различных типов массивов.
 
+/*
 void fillArray(int a[], int n)
 {
 	for (int i = 0; i < n; i++)
@@ -138,6 +142,13 @@ void fillArray(int a[], int n)
 }
 
 void printArray(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << " ";
+	cout << endl;
+}
+
+void printArray(double a[], int n)
 {
 	for (int i = 0; i < n; i++)
 		cout << a[i] << " ";
@@ -154,19 +165,128 @@ int nullArray(int a[], int n)
 	return count;
 }
 
+int nullArray(double a[], int n)
+{
+	int count = 0;
+	for (int i = 0; i < n; i++)
+		if (a[i] == 0)
+			count++;
+
+	return count;
+}
+
 int main()
 {
 	int arr[8] = { 0 };
+	double arr1[5] = { 0, 2.1, 3.5, 4.7, 8.5 };
 	
+	srand(time(NULL));
+
 	fillArray(arr, 5);
 	
 	printArray(arr, 8);
+	cout << nullArray(arr, 8) << endl;
 
-	cout<<nullArray(arr, 8)<<endl;
+	printArray(arr1, 5);
+	cout << nullArray(arr1, 5) << endl;
 	
 
+	system("pause");
+	return 0;
+}*/
 
 
+// книга  Харви Дейтл  --- Как программировать на с++
+
+//20.	*Напишите функцию, которая определяет количество  элементов передаваемого массива, которые больше определенного числа, 
+//это число тоже передается в функцию.Реализовать перегрузки для различных типов массивов.
+
+// 20 дом раб
+
+
+
+// 23.	*Напишите функцию, которая определяет максимальный элемент массива(его значение и номер).Внутри функции запрещено использовать команды cin и cout.
+
+
+void fillArray(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		a[i] = 1 + rand() % 5;
+}
+
+void fillArray(char a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		a[i] = char(rand()%57+65);
+}
+
+void printArray(char a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << " ";
+	cout << endl;
+}
+
+void printArray(double a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << " ";
+	cout << endl;
+}
+
+void printArray(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << a[i] << " ";
+	cout << endl;
+}
+
+int minArr(int a[], int size, int &minIndex)
+{
+	int min = a[0];
+	for(int i=0; i<size; i++)
+		if (a[i] <= min)
+		{
+			min = a[i];
+			minIndex = i;
+		}
+	return min;
+}
+
+char minArr(char c[], int size, int &minIndex)
+{
+	char min = c[0];
+	for (int i = 0; i < size; i++)
+		if (c[i] <= min)
+		{
+			min = c[i];
+			minIndex = i;
+		}
+	return min;
+}
+int main()
+{
+	int arr[8] = { 0 }, minIndex;
+	char c[10];
+	double arr1[5] = { 0, 2.1, 3.5, 4.7, 8.5 };
+
+	srand(time(NULL));
+
+	//fillArray(arr, 8);
+	fillArray(c, 10);
+
+	//printArray(arr, 8);
+	printArray(c, 10);
+
+	//cout << minArr(arr, 8, minIndex) << endl;
+	//cout << minIndex << endl;
+
+	cout << minArr(c, 10, minIndex) << endl;
+	cout << minIndex << endl;
+
+	//cout << nullArray(arr, 8) << endl;
+
+		
 	system("pause");
 	return 0;
 }
